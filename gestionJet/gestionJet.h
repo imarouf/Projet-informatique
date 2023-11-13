@@ -14,9 +14,9 @@ typedef struct SJet
     int jet_Gamme; // 1 = basique, 2 = business, 3 = premimum ( 3 choix de modèles par gamme)
 } Jet;
 
-void ajouter_jet(Jet *jet);
-void modifier_jet(Jet *jet);
-void supprimer_jet(Jet *jet);
+void ajouter_jet(Jet *listeJet);
+void modifier_jet(Jet *listeJet);
+void supprimer_jet(Jet *listeJet);
 
 void afficher_liste_jet_ordre_alphabetique(Jet *jet);
 

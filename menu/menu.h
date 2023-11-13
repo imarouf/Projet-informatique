@@ -4,9 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void afficherMenuPrincipal();
-void afficherMenuGestionClient();
-void afficherMenuGestionJets();
-void afficherMenuLocations();
+void afficherMenuPrincipal(int *choix);
+void afficherMenuGestionClient(FILE *listeClient);
+void afficherMenuGestionJet(FILE *listeClient);
+void afficherMenuLocation(FILE *listeClient);
 
 #endif

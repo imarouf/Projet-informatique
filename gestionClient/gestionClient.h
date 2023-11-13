@@ -18,7 +18,6 @@ typedef struct SClient
 void ajouter_client(FILE *listeClient);
 void modifier_client(FILE *listeClient, int index);
 void supprimer_client(FILE *listeClient);
-
 void afficher_liste_client_ordre_alphabetique(FILE *listeClient);
 
 #endif

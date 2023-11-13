@@ -33,35 +33,27 @@ Projet d’Algorithmique et Programmation en C 2023-24 Page 5 sur 6
 
 int main()
 {
-    int choix;
-    FILE *listeClient = fopen("gestionClient/listeClient.txt", "r+");
-    // ajouter_client(listeClient);
-    // modifier_client(listeClient,1);
-    
-    afficherMenuPrincipal();
-    printf("\nChoisissez une option (1-4) : ");
-    scanf("%d", &choix);
+    // Utilisation de "a+" pour permettre la lecture et l'écriture
+    FILE *fichierClient = fopen("listeClient.txt", "a+");
+    // Utilisez la fonction modifier_client pour modifier un client (exemple : index 1)
+    // modifier_client(fichierClient, 1);
 
-    do
+    // Fermez le fichier
+    fclose(fichierClient);
+
+    int choixMenuPrincipal;
+    while (1)
     {
+        afficherMenuPrincipal(&choixMenuPrincipal);
+        switch (choixMenuPrincipal)
         {
-            switch ((choix))
-            {
-            case 1:
-                afficherMenuGestionClient();
-                break;
-            case 2:
-                afficherMenuGestionJets();
-                break;
-            case 3:
-                // afficherMenuLocations();
-                break;
-
-            case 4:
-                return 0;
-            }
+        case 1:
+            afficherMenuGestionClient(fichierClient);
+            break;
+        case 2:
+            afficherMenuGestionJet(fichierClient);
+            break;
         }
-    } while (choix != 4);
-
-    fclose(listeClient); // Youpi on perd pas 1 point
+    }
+    return 0; // Termine le programme avec succès
 }
