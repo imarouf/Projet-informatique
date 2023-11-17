@@ -21,8 +21,8 @@ typedef struct SClient
 extern int prochainIndice;
 
 void ajouter_client(FILE *listeClient); // numero de la ligne où ajouter le client
-void modifier_client(FILE *listeClient, int index);
-void supprimer_client(FILE *listeClient,int index_suppression);
+void modifier_client(FILE *listeClient);
+void supprimer_client(FILE *listeClient);
 //void afficher_liste_client_ordre_alphabetique(FILE *listeClient);
 
 #endif

@@ -29,17 +29,33 @@ Projet d’Algorithmique et Programmation en C 2023-24 Page 5 sur 6
 
 int main()
 {
-// Utilisation de "a+" pour permettre la lecture et l'écriture
+    // Utilisation de "a+" pour permettre la lecture et l'écriture en fin de fichier
     FILE *fichierClient = fopen(FICHIER_CLIENT, "a+");
 
-    // Utilisez la fonction ajouter_client pour ajouter un client
-    ajouter_client(fichierClient);
-    // Utilisez la fonction modifier_client pour modifier un client (exemple : index 1)
-    modifier_client(fichierClient, 2);
-    supprimer_client(fichierClient,3);
-
+    int choixMenu;
+    while (1)
+    {
+        afficherMenuPrincipal(&choixMenu);
+        switch (choixMenu)
+        {
+        case 1:
+            afficherMenuGestionClient(fichierClient);
+            break;
+        case 2:
+            afficherMenuGestionJet(fichierClient);
+            break;
+        case 3:
+            afficherMenuLocation(fichierClient);
+            break;
+        case 4:
+            printf("Fin du programme.\n");
+            return 0;
+        default:
+            printf("Choix invalide, veuillez réessayer.\n");
+        }
+    }
+    
     // Fermez le fichier
     fclose(fichierClient);
-
     return 0; // Termine le programme avec succès
 }

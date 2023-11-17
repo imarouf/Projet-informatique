@@ -17,8 +17,8 @@ void afficherMenuGestionClient(FILE *listeClient)
     int choixSousMenu;
     printf("\n==== Gestion des clients ====\n");
     printf("1.1 Ajouter un client\n");
-    printf("1.2 Modifier un produit\n");
-    printf("1.3 Supprimer un produit\n");
+    printf("1.2 Modifier un client\n");
+    printf("1.3 Supprimer un client\n");
     printf("1.4 Retour au menu principal\n");
     printf("Faites votre choix : ");
     scanf("%d", &choixSousMenu);
@@ -26,11 +26,12 @@ void afficherMenuGestionClient(FILE *listeClient)
     {
     case 1:
         ajouter_client(listeClient);
+        break;
     case 2:
-        // modifier_client();
+        modifier_client(listeClient);
         break;
     case 3:
-        // supprimer_client(fichierClient);
+        supprimer_client(listeClient);
         break;
     case 4:
         break;

@@ -12,8 +12,10 @@ void ajouter_client(FILE *listeClient)
     rewind(listeClient);
 
     // Parcourir le fichier pour obtenir le dernier indice
-    while (fscanf(listeClient, "%d %*s %*s", &client.index) == 1) {
-        if (client.index >= prochainIndice) {
+    while (fscanf(listeClient, "%d %*s %*s", &client.index) == 1)
+    {
+        if (client.index >= prochainIndice)
+        {
             prochainIndice = client.index + 1;
         }
     }
@@ -33,9 +35,8 @@ void ajouter_client(FILE *listeClient)
     fseek(listeClient, 0, SEEK_END);
     fprintf(listeClient, "%d %s %s\n", client.index, client.nom, client.prenom);
 }
-
-
-void modifier_client(FILE *listeClient, int index)
+// Regarder tmpnam
+void modifier_client(FILE *listeClient)
 {
     FILE *tempFile = fopen("temp.txt", "w");
     rewind(listeClient); // J'ai passé 2h pour me rendre compte de l'erreur
@@ -47,10 +48,15 @@ void modifier_client(FILE *listeClient, int index)
     }
 
     Client nouveauClient;
-
+    char nomModifie[CMAX], prenomModifie[CMAX];
+    printf("Saissez le nom du client que vous voulez modifier : ");
+    scanf("%s", nomModifie);
+    printf("Saisissez le prénom du client à modifier : ");
+    scanf("%s", prenomModifie);
+    // Utilisation de la fonction strcmp pour comparer deux chaines de caractères
     while (fscanf(listeClient, "%d %s %s", &nouveauClient.index, nouveauClient.nom, nouveauClient.prenom) != EOF)
     {
-        if (nouveauClient.index == index)
+        if (strcmp(nouveauClient.nom, nomModifie) == 0 && strcmp(nouveauClient.prenom, prenomModifie) == 0)
         {
             // On demande de saisir les infos à l'utilisateur
             printf("Saisissez le nouveau nom du client : \n");
@@ -71,19 +77,19 @@ void modifier_client(FILE *listeClient, int index)
     fclose(tempFile);
     fclose(listeClient);
 
-    if (remove("listeClient.txt") != 0)
+    if (remove(FICHIER_CLIENT) != 0)
     {
         perror("Erreur lors de la suppression du fichier d'origine");
         return;
     }
 
-    if (rename("temp.txt", "listeClient.txt") != 0)
+    if (rename("temp.txt", FICHIER_CLIENT) != 0)
     {
         perror("Erreur lors du remplacement du fichier");
         return;
     }
 
-    listeClient = fopen("listeClient.txt", "a+");
+    listeClient = fopen(FICHIER_CLIENT, "a+");
     if (listeClient == NULL)
     {
         perror("Erreur lors de l'ouverture du fichier clients.txt après le remplacement");
@@ -91,78 +97,54 @@ void modifier_client(FILE *listeClient, int index)
     }
 }
 
-// ...
-
-void afficher_client(FILE *listeClient, int index_recherche)
-{
-    Client client;
-
-    // Rembobiner le fichier au début
-    rewind(listeClient);
-
-    // Parcourir le fichier pour trouver le client avec l'index spécifié
-    while (fscanf(listeClient, "%d %s %s", &client.index, client.nom, client.prenom) != EOF)
-    {
-        if (client.index == index_recherche)
-        {
-            // Afficher les détails du client
-            printf("Index : %d\n", client.index);
-            printf("Nom : %s\n", client.nom);
-            printf("Prénom : %s\n", client.prenom);
-
-            return; // Sortir de la fonction dès que le client est trouvé
-        }
-    }
-
-    // Si l'index n'est pas trouvé, afficher un message
-    printf("Aucun client trouvé avec l'index %d.\n", index_recherche);
-}
-
-void supprimer_client(FILE *listeClient, int index_suppression)
+void supprimer_client(FILE *listeClient)
 {
     FILE *tempFile = fopen("temp.txt", "w");
-
     if (tempFile == NULL)
     {
         perror("Erreur lors de la création du fichier temporaire");
         return;
     }
-    Client client;
+    Client clientASupprime;
+
+    char nomSupprime[CMAX], prenomSupprime[CMAX];
+
+    printf("Saissez le nom du client que vous voulez supprimer : ");
+    scanf("%s", nomSupprime);
+    printf("Saisissez le prénom du client supprimer : ");
+    scanf("%s", prenomSupprime);
     // Rembobiner le fichier au début
     rewind(listeClient);
     // Parcourir le fichier pour copier les clients dans le fichier temporaire
-    while (fscanf(listeClient, "%d %s %s", &client.index, client.nom, client.prenom) != EOF)
+    while (fscanf(listeClient, "%d %s %s", &clientASupprime.index, clientASupprime.nom, clientASupprime.prenom) != EOF)
     {
-        if (client.index != index_suppression)
+        if (strcmp(clientASupprime.nom, nomSupprime) != 0 && strcmp(clientASupprime.prenom, prenomSupprime) != 0)
         {
             // Copier le client dans le fichier temporaire si ce n'est pas celui à supprimer
-            fprintf(tempFile, "%d %s %s\n", client.index, client.nom, client.prenom);
+            fprintf(tempFile, "%d %s %s\n", clientASupprime.index, clientASupprime.nom, clientASupprime.prenom);
         }
         else
         {
-            printf("Le client avec l'index %d a été supprimé avec succès.\n", index_suppression);
+            printf("Le client %s %s a été supprimé avec succès.\n", nomSupprime, prenomSupprime);
         }
     }
-
     fclose(tempFile);
     fclose(listeClient);
-
     // Supprimer le fichier d'origine
-    if (remove("listeClient.txt") != 0)
-    {
+    if (remove(FICHIER_CLIENT) != 0)
+    { // PEnser a constante ENOENT et EACCESAS
         perror("Erreur lors de la suppression du fichier d'origine");
         return;
     }
-
     // Renommer le fichier temporaire pour remplacer le fichier d'origine
-    if (rename("temp.txt", "listeClient.txt") != 0)
+    if (rename("temp.txt", FICHIER_CLIENT) != 0)
     {
         perror("Erreur lors du remplacement du fichier");
         return;
     }
 
     // Ouvrir à nouveau le fichier d'origine en mode append pour permettre les opérations ultérieures
-    listeClient = fopen("listeClient.txt", "a+");
+    listeClient = fopen(FICHIER_CLIENT, "a+");
     if (listeClient == NULL)
     {
         perror("Erreur lors de l'ouverture du fichier clients.txt après le remplacement");
@@ -172,4 +154,5 @@ void supprimer_client(FILE *listeClient, int index_suppression)
 
 void afficher_liste_client_ordre_alphabetique(FILE *listeClient)
 {
+    //listeClient = fopen(FICHIER_CLIENT)
 }
