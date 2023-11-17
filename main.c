@@ -17,8 +17,6 @@ Projet d’Algorithmique et Programmation en C 2023-24 Page 5 sur 6
 
 (4) Quitter le programme de test.
 
-
-
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,31 +27,19 @@ Projet d’Algorithmique et Programmation en C 2023-24 Page 5 sur 6
 #include "gestionLocation/gestionLocation.h"
 #include "menu/menu.h"
 
-#define CMAX 20
-
 int main()
 {
-    // Utilisation de "a+" pour permettre la lecture et l'écriture
-    FILE *fichierClient = fopen("listeClient.txt", "a+");
+// Utilisation de "a+" pour permettre la lecture et l'écriture
+    FILE *fichierClient = fopen(FICHIER_CLIENT, "a+");
+
+    // Utilisez la fonction ajouter_client pour ajouter un client
+    ajouter_client(fichierClient);
     // Utilisez la fonction modifier_client pour modifier un client (exemple : index 1)
-    // modifier_client(fichierClient, 1);
+    modifier_client(fichierClient, 2);
+    supprimer_client(fichierClient,3);
 
     // Fermez le fichier
     fclose(fichierClient);
 
-    int choixMenuPrincipal;
-    while (1)
-    {
-        afficherMenuPrincipal(&choixMenuPrincipal);
-        switch (choixMenuPrincipal)
-        {
-        case 1:
-            afficherMenuGestionClient(fichierClient);
-            break;
-        case 2:
-            afficherMenuGestionJet(fichierClient);
-            break;
-        }
-    }
     return 0; // Termine le programme avec succès
 }

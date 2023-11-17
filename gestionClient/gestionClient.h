@@ -1,6 +1,8 @@
 #ifndef gestionClient_h
 #define gestionClient_h
 
+#define FICHIER_CLIENT "listeClient.txt"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,14 +12,17 @@
 // client#include "menu.h"
 typedef struct SClient
 {
-    int cli_Index;         // numéro client (unique)
-    char cli_Nom[CMAX];    // Nom du client
-    char cli_Prenom[CMAX]; // Prénom du client
+    int index;         // numéro client (unique)
+    char nom[CMAX];    // Nom du client
+    char prenom[CMAX]; // Prénom du client
 } Client;
 
-void ajouter_client(FILE *listeClient);
+// Déclaration de la variable globale partagée
+extern int prochainIndice;
+
+void ajouter_client(FILE *listeClient); // numero de la ligne où ajouter le client
 void modifier_client(FILE *listeClient, int index);
-void supprimer_client(FILE *listeClient);
-void afficher_liste_client_ordre_alphabetique(FILE *listeClient);
+void supprimer_client(FILE *listeClient,int index_suppression);
+//void afficher_liste_client_ordre_alphabetique(FILE *listeClient);
 
 #endif

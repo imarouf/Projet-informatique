@@ -65,9 +65,27 @@ void afficherMenuGestionJet(FILE *listeClient)
 
 void afficherMenuLocation(FILE *listeClient)
 {
+    int choixSousMenu;
     printf("Gestion des emprunts de jet\n");
     printf("3.1 Ajouter un emprunt de jet\n");
     printf("3.2 Modifier emprunt de jet\n");
     printf("3.3 Supprimer un emprunt \n");
     printf("3.4 Retour au menu principal\n");
+    printf("Faites votre choix : ");
+    scanf("%d", &choixSousMenu);
+
+    switch (choixSousMenu)
+    {
+    case 1:
+        ajouter_client(listeClient);
+        break;
+    case 2:
+        // modifier_client();
+        break;
+    case 3:
+        // supprimer_client(fichierClient);
+        break;
+    case 4:
+        break;
+    }
 }
