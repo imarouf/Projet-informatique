@@ -6,18 +6,23 @@
 #include <string.h>
 
 #define CMAX 20
-// Jet privé
+
+#define FICHIER_JET "listeJet.txt"
+
+// Variable globale partagée
+extern int prochainIndiceJet;
+
 typedef struct SJet
 {
-    int jet_Index;
-    char jet_Modele[CMAX]; 
-    int jet_Gamme; // 1 = basique, 2 = business, 3 = premimum ( 3 choix de modèles par gamme)
+    int index;
+    char modele[CMAX]; 
+    int gamme; // 1 = basique, 2 = business, 3 = premimum ( 3 choix de modèles par gamme)
 } Jet;
 
-void ajouter_jet(Jet *listeJet);
-void modifier_jet(Jet *listeJet);
-void supprimer_jet(Jet *listeJet);
+void ajouter_jet(FILE *listeJet);
+void modifier_jet(FILE *listeJet);
+void supprimer_jet(FILE *listeJet);
 
-void afficher_liste_jet_ordre_alphabetique(Jet *jet);
+//void afficher_liste_jet_ordre_alphabetique(Jet *jet);
 
 #endif

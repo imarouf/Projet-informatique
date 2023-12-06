@@ -8,6 +8,8 @@
 #include "../gestionClient/gestionClient.h"
 #include "../gestionJet/gestionJet.h"
 
+#define FICHIER_LOCATION "listeLocation.txt"
+
 void emprunterJet();
 void rendreJet();
 

@@ -1,19 +1,24 @@
 /*
     Mon algorithme :
 
+Menu :
 (1) Gestion des clients:
-• Ajouter, modifier, supprimer un client
-• Afficher la liste des clients par ordre alphabétique
+• Ajouter un client
+• Modifier un client
+• Supprimer un client
+• Afficher la liste des clients par ordre alphabétique (Nom)
 
 (2) Gestion des Jet:
-• Ajouter, modifier, supprimer un jet
-• Afficher la liste des jets par ordre alphabétique (titre)
+• Ajouter un jet
+• Modifier un jet
+• Supprimer un jet
+• Afficher la liste des jets par ordre alphabétique (Modèle)
 
-(3) Gestion des emprunts:
-Projet d’Algorithmique et Programmation en C 2023-24 Page 5 sur 6
-• Emprunter, rendre un jet
-• Afficher la liste des jet empruntés
-• Afficher la liste des jet empruntés par un client
+(3) Gestion des locations:
+• Emprunter un jet
+• Rendre un jet
+• Afficher la liste des jet loués
+• Afficher la liste des jet loués par un client
 
 (4) Quitter le programme de test.
 
@@ -22,16 +27,17 @@ Projet d’Algorithmique et Programmation en C 2023-24 Page 5 sur 6
 #include <stdlib.h>
 #include <string.h>
 
-#include "gestionClient/gestionClient.h"
 #include "gestionJet/gestionJet.h"
-#include "gestionLocation/gestionLocation.h"
+#include "gestionClient/gestionClient.h"
 #include "menu/menu.h"
 
 int main()
 {
     // Utilisation de "a+" pour permettre la lecture et l'écriture en fin de fichier
     FILE *fichierClient = fopen(FICHIER_CLIENT, "a+");
-
+    FILE *fichierJet = fopen(FICHIER_JET, "a+");
+    FILE *fichierLocation = fopen(FICHIER_LOCATION,"a+");
+    // ajouter_jet(fichierJet);
     int choixMenu;
     while (1)
     {
@@ -42,10 +48,9 @@ int main()
             afficherMenuGestionClient(fichierClient);
             break;
         case 2:
-            afficherMenuGestionJet(fichierClient);
-            break;
+            afficherMenuGestionJet(fichierJet);
         case 3:
-            afficherMenuLocation(fichierClient);
+            afficherMenuLocation(fichierLocation);
             break;
         case 4:
             printf("Fin du programme.\n");
@@ -54,8 +59,9 @@ int main()
             printf("Choix invalide, veuillez réessayer.\n");
         }
     }
-    
     // Fermez le fichier
     fclose(fichierClient);
+    fclose(fichierJet);
+
     return 0; // Termine le programme avec succès
 }

@@ -1,13 +1,17 @@
 #ifndef gestionClient_h
 #define gestionClient_h
 
-#define FICHIER_CLIENT "listeClient.txt"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+#define FICHIER_CLIENT "listeClient.txt"
+
 #define CMAX 20
+
+// Déclaration de la variable globale partagée
+extern int prochainIndice;
 
 // client#include "menu.h"
 typedef struct SClient
@@ -17,8 +21,6 @@ typedef struct SClient
     char prenom[CMAX]; // Prénom du client
 } Client;
 
-// Déclaration de la variable globale partagée
-extern int prochainIndice;
 
 void ajouter_client(FILE *listeClient); // numero de la ligne où ajouter le client
 void modifier_client(FILE *listeClient);
