@@ -82,22 +82,24 @@ void afficherMenuLocation(FILE *listeLocation)
     printf("║  3.2 Rendre un jet                                    ║\n");
     printf("║  3.3 Afficher la liste des jets loués                 ║\n");
     printf("║  3.4 Afficher la liste des jet loués par un client    ║\n");
-    printf("║  3.5 Retour au menu principal                         ║\n");  
+    printf("║  3.5 Retour au menu principal                         ║\n");
     printf("╚═══════════════════════════════════════════════════════╝\n");
+    printf("Faites votre choix : ");
     scanf("%d", &choixSousMenu);
 
     switch (choixSousMenu)
     {
     case 1:
-        // ajouter_client(listeLocation);
+        emprunterJet(listeLocation);
         break;
     case 2:
-        // modifier_client();
+        rendreJet(listeLocation);
         break;
     case 3:
-        // supprimer_client(fichierClient);
+        afficherJetEmprunte(listeLocation);
         break;
     case 4:
+        afficherListeDesEmprunts(listeLocation);
         break;
     case 5:
         break;

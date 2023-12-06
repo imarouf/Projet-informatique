@@ -22,16 +22,14 @@ void ajouter_jet(FILE *listeJet)
 
     printf("\n══════════════════════════════════════════════════\n");
     printf("Saisissez le nouveau modèle du jet :\n");
-    printf("══════════════════════════════════════════════════\n");
     printf("Modèle : ");
     scanf("%s", jet.modele);
-    printf("\n══════════════════════════════════════════════════\n");
     printf("Saisissez la nouvelle gamme du jet :\n");
     printf("  1. Basique\n");
     printf("  2. Premium\n");
     printf("  3. Deluxe\n");
-    printf("══════════════════════════════════════════════════\n");
     scanf("%d", &(jet.gamme));
+    printf("══════════════════════════════════════════════════\n");
 
     // Incrémenter le prochain indice disponible
     prochaineIndiceJet++;
@@ -59,9 +57,9 @@ void modifier_jet(FILE *listeJet)
     int gammeModifie;
     printf("\n══════════════════════════════════════════════════\n");
     printf("Saisissez le modèle du jet à modifier :\n");
-    printf("══════════════════════════════════════════════════\n");
     printf("Modèle : ");
     scanf("%s", modeleModifie);
+    printf("\n══════════════════════════════════════════════════\n");
     // Utilisation de la fonction strcmp pour comparer deux chaines de caractères
     while (fscanf(listeJet, "%d %s %d", &nouveauJet.index, nouveauJet.modele, &nouveauJet.gamme) != EOF)
     {
@@ -70,12 +68,10 @@ void modifier_jet(FILE *listeJet)
             // On demande de saisir les infos à l'utilisateur
             printf("\n══════════════════════════════════════════════════\n");
             printf("Saisissez le nouveau modèle du jet :\n");
-            printf("══════════════════════════════════════════════════\n");
             scanf("%s", nouveauJet.modele);
-            printf("\n══════════════════════════════════════════════════\n");
             printf("Saisissez la nouvelle gamme du jet  : \n");
-            printf("══════════════════════════════════════════════════\n");
             scanf("%d", &(nouveauJet.gamme));
+            printf("══════════════════════════════════════════════════\n");
             // On les insère dans le fichier temporaire
             fprintf(tempFileJet, "%d %s %d\n", nouveauJet.index, nouveauJet.modele, nouveauJet.gamme);
 
@@ -125,8 +121,8 @@ void supprimer_jet(FILE *listeJet)
 
     printf("\n══════════════════════════════════════════════════\n");
     printf("Saisissez la modèle de jet à supprimer  : \n");
-    printf("══════════════════════════════════════════════════\n");
     scanf("%s", modeleSupprime);
+    printf("══════════════════════════════════════════════════\n");
 
     // Rembobiner le fichier au début
     rewind(listeJet);

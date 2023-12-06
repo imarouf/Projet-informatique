@@ -10,11 +10,9 @@
 
 #define FICHIER_LOCATION "listeLocation.txt"
 
-void emprunterJet();
-void rendreJet();
-
-void afficher_jet_emprunte();
-
-void afficher_liste_des_emprunts();
+void emprunterJet(FILE *listeLocation);
+void rendreJet(FILE *listeLocation);
+void afficherJetEmprunte(FILE *listeLocation);
+void afficherListeDesEmprunts(FILE *listeLocation);
 
 #endif

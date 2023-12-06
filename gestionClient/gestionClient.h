@@ -18,7 +18,7 @@ typedef struct SClient
 {
     int index;         // numéro client (unique)
     char nom[CMAX];    // Nom du client
-    char prenom[CMAX]; // Prénom du client
+    char prenom[CMAX]; // Prénom du client    
 } Client;
 
 

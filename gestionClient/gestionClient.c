@@ -25,14 +25,12 @@ void ajouter_client(FILE *listeClient)
 
     printf("\n══════════════════════════════════════════════════\n");
     printf("Saisissez le nom du client :\n");
-    printf("══════════════════════════════════════════════════\n");
     printf("Nom : ");
     scanf("%s", client.nom);
-    printf("\n══════════════════════════════════════════════════\n");
     printf("Saisissez le prénom du client :\n");
-    printf("══════════════════════════════════════════════════\n");
     printf("prénom : ");
     scanf("%s", client.prenom);
+    printf("══════════════════════════════════════════════════\n");
     // Incrémenter le prochain indice disponible
     prochainIndice++;
 
@@ -58,14 +56,12 @@ void modifier_client(FILE *listeClient)
     char nomModifie[CMAX], prenomModifie[CMAX];
     printf("\n══════════════════════════════════════════════════\n");
     printf("Saisissez le nom du client à modifier :\n");
-    printf("══════════════════════════════════════════════════\n");
     printf("Nom : ");
     scanf("%s", nomModifie);
-    printf("\n══════════════════════════════════════════════════\n");
     printf("Saisissez le prénom du client à modifier :\n");
-    printf("══════════════════════════════════════════════════\n");
     printf("Nom : ");
     scanf("%s", prenomModifie);
+    printf("══════════════════════════════════════════════════\n");
     // Utilisation de la fonction strcmp pour comparer deux chaines de caractères
     while (fscanf(listeClient, "%d %s %s", &nouveauClient.index, nouveauClient.nom, nouveauClient.prenom) != EOF)
     {
@@ -74,14 +70,12 @@ void modifier_client(FILE *listeClient)
             // On demande de saisir les infos à l'utilisateur
             printf("\n══════════════════════════════════════════════════\n");
             printf("Saisissez le nouveau nom du client :\n");
-            printf("══════════════════════════════════════════════════\n");
             printf("Nouveau nom : ");
             scanf("%s", nouveauClient.nom);
             printf("Saisissez le nouveau prénom du client : \n");
-            printf("\n══════════════════════════════════════════════════\n");
             printf("Saisissez le prénom du client :\n");
-            printf("══════════════════════════════════════════════════\n");
             printf("Nouveua prénom : ");
+            printf("══════════════════════════════════════════════════\n");
             scanf("%s", nouveauClient.prenom);
             // On les insère dans le fichier temporaire
             fprintf(tempFile, "%d %s %s\n", nouveauClient.index, nouveauClient.nom, nouveauClient.prenom);
@@ -131,12 +125,10 @@ void supprimer_client(FILE *listeClient)
 
     printf("\n══════════════════════════════════════════════════\n");
     printf("Saisissez le nom du client à supprimer :\n");
-    printf("══════════════════════════════════════════════════\n");
     scanf("%s", nomSupprime);
-    printf("\n══════════════════════════════════════════════════\n");
     printf("Saisissez le prénom du client à supprimer :\n");
-    printf("══════════════════════════════════════════════════\n");
     scanf("%s", prenomSupprime);
+    printf("══════════════════════════════════════════════════\n");
     // Rembobiner le fichier au début
     rewind(listeClient);
     // Parcourir le fichier pour copier les clients dans le fichier temporaire
