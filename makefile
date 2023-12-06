@@ -17,3 +17,9 @@ gestionLocation.o: gestionLocation/gestionLocation.c gestionLocation/gestionLoca
 
 menu.o: menu/menu.c menu/menu.h gestionClient/gestionClient.h
 	gcc menu/menu.c -c -Wall
+
+lines:
+	@echo "Nombre total de lignes de code :"
+	@wc -l *.c gestionClient/*.c gestionClient/*.h gestionJet/*.c gestionJet/*.h gestionLocation/*.c gestionLocation/*.h menu/*.c menu/*.h
+
+.PHONY: lines
