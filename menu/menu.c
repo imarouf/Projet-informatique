@@ -16,7 +16,7 @@ void afficherMenuPrincipal(int *choix)
 
 void afficherMenuGestionClient(FILE *listeClient)
 {
-    int choixSousMenu;
+    int choixSousMenu1;
     printf("\n╔════════════════════════════════════╗\n");
     printf("║      Gestion des Clients           ║\n");
     printf("╠════════════════════════════════════╣\n");
@@ -26,8 +26,8 @@ void afficherMenuGestionClient(FILE *listeClient)
     printf("║  1.4 Retour au menu principal      ║\n");
     printf("╚════════════════════════════════════╝\n");
     printf("Faites votre choix : ");
-    scanf("%d", &choixSousMenu);
-    switch (choixSousMenu)
+    scanf("%d", &choixSousMenu1);
+    switch (choixSousMenu1)
     {
     case 1:
         ajouter_client(listeClient);
@@ -74,7 +74,7 @@ void afficherMenuGestionJet(FILE *listeJet)
 
 void afficherMenuLocation(FILE *listeLocation)
 {
-    int choixSousMenu;
+    int choixSousMenu3;
     printf("\n╔═══════════════════════════════════════════════════════╗\n");
     printf("║        Gestion des locations                          ║\n");
     printf("╠═══════════════════════════════════════════════════════╣\n");
@@ -85,9 +85,9 @@ void afficherMenuLocation(FILE *listeLocation)
     printf("║  3.5 Retour au menu principal                         ║\n");
     printf("╚═══════════════════════════════════════════════════════╝\n");
     printf("Faites votre choix : ");
-    scanf("%d", &choixSousMenu);
+    scanf("%d", &choixSousMenu3);
 
-    switch (choixSousMenu)
+    switch (choixSousMenu3)
     {
     case 1:
         emprunterJet(listeLocation);

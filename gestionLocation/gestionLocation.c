@@ -19,8 +19,6 @@ void emprunterJet(FILE *listeLocation)
     // Aller à la fin du fichier pour ajouter le nouvel emprunteur
     fseek(listeLocation, 0, SEEK_END);
     fprintf(listeLocation, "%s %s %s\n", emprunteur.nom, emprunteur.prenom, jetEmprunte.modele);
-
-    fclose(listeLocation);
 }
 
 void rendreJet(FILE *listeLocation)
@@ -53,7 +51,7 @@ void rendreJet(FILE *listeLocation)
         if (strcmp(emprunteurASupprime.nom, nomSupprime) != 0 && strcmp(emprunteurASupprime.prenom, prenomSupprime) != 0 && strcmp(jetEmprunteASupprime.modele, jetSupprime) != 0)
         {
             // Copier le client dans le fichier temporaire si ce n'est pas celui à supprimer
-            fprintf(tempFile, "%d %s %s\n", emprunteurASupprime.index, emprunteurASupprime.nom, emprunteurASupprime.prenom);
+            fprintf(tempFile, "%s %s %s\n", emprunteurASupprime.nom, emprunteurASupprime.prenom, jetEmprunteASupprime.modele);
         }
         else
         {
@@ -61,7 +59,6 @@ void rendreJet(FILE *listeLocation)
         }
     }
     fclose(tempFile);
-    fclose(listeLocation);
     // Supprimer le fichier d'origine
     if (remove(FICHIER_LOCATION) != 0)
     { // PEnser a constante ENOENT et EACCESAS
@@ -98,6 +95,7 @@ void afficherJetEmprunte(FILE *listeLocation)
     }
     printf("══════════════════════════════════════════════════\n");
 }
+
 void afficherListeDesEmprunts(FILE *listeLocation)
 {
     Client emprunteur;

@@ -38,9 +38,8 @@ void ajouter_client(FILE *listeClient)
     fseek(listeClient, 0, SEEK_END);
     fprintf(listeClient, "%d %s %s\n", client.index, client.nom, client.prenom);
 
-    fclose(listeClient);
 }
-// Regarder tmpnam
+
 void modifier_client(FILE *listeClient)
 {
     FILE *tempFile = fopen("tempClient.txt", "w");
@@ -74,7 +73,7 @@ void modifier_client(FILE *listeClient)
             scanf("%s", nouveauClient.nom);
             printf("Saisissez le nouveau prénom du client : \n");
             printf("Saisissez le prénom du client :\n");
-            printf("Nouveua prénom : ");
+            printf("Nouveau prénom : ");
             printf("══════════════════════════════════════════════════\n");
             scanf("%s", nouveauClient.prenom);
             // On les insère dans le fichier temporaire
@@ -89,7 +88,6 @@ void modifier_client(FILE *listeClient)
     }
 
     fclose(tempFile);
-    fclose(listeClient);
 
     if (remove(FICHIER_CLIENT) != 0)
     {
@@ -145,7 +143,6 @@ void supprimer_client(FILE *listeClient)
         }
     }
     fclose(tempFile);
-    fclose(listeClient);
     // Supprimer le fichier d'origine
     if (remove(FICHIER_CLIENT) != 0)
     { // PEnser a constante ENOENT et EACCESAS

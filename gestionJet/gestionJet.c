@@ -38,7 +38,6 @@ void ajouter_jet(FILE *listeJet)
     fseek(listeJet, 0, SEEK_END);
     fprintf(listeJet, "%d %s %d\n", jet.index, jet.modele, jet.gamme);
 
-    fclose(listeJet);
 }
 
 void modifier_jet(FILE *listeJet)
@@ -84,8 +83,7 @@ void modifier_jet(FILE *listeJet)
     }
 
     fclose(tempFileJet);
-    fclose(listeJet);
-
+    
     if (remove(FICHIER_JET) != 0)
     {
         perror("Erreur lors de la suppression du fichier d'origine");
@@ -131,7 +129,7 @@ void supprimer_jet(FILE *listeJet)
     {
         if (strcmp(jetASupprime.modele, modeleSupprime) != 0)
         {
-            // Copier le client dans le fichier temporaire si ce n'est pas celui à supprimer
+            // Copier le client dans le fMenu :ichier temporaire si ce n'est pas celui à supprimer
             fprintf(tempFile, "%d %s %d\n", jetASupprime.index, jetASupprime.modele, jetASupprime.gamme);
         }
         else
@@ -140,7 +138,6 @@ void supprimer_jet(FILE *listeJet)
         }
     }
     fclose(tempFile);
-    fclose(listeJet);
     // Supprimer le fichier d'origine
     if (remove(FICHIER_JET) != 0)
     { // PEnser a constante ENOENT et EACCESAS

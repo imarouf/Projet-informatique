@@ -36,7 +36,7 @@ int main()
     // Utilisation de "a+" pour permettre la lecture et l'écriture en fin de fichier
     FILE *fichierClient = fopen(FICHIER_CLIENT, "a+");
     FILE *fichierJet = fopen(FICHIER_JET, "a+");
-    FILE *fichierLocation = fopen(FICHIER_LOCATION,"a+");
+    FILE *fichierLocation = fopen(FICHIER_LOCATION, "a+");
     // ajouter_jet(fichierJet);
     int choixMenu;
     while (1)
@@ -49,6 +49,7 @@ int main()
             break;
         case 2:
             afficherMenuGestionJet(fichierJet);
+            break;
         case 3:
             afficherMenuLocation(fichierLocation);
             break;
@@ -62,6 +63,7 @@ int main()
     // Fermez le fichier
     fclose(fichierClient);
     fclose(fichierJet);
+    fclose(fichierLocation);
 
     return 0; // Termine le programme avec succès
 }

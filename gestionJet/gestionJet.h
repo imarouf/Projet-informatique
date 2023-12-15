@@ -16,7 +16,7 @@ typedef struct SJet
 {
     int index;
     char modele[CMAX]; 
-    int gamme; // 1 = basique, 2 = business, 3 = premimum ( 3 choix de modèles par gamme)
+    int gamme;                      // 1 = basique, 2 = business, 3 = premimum ( 3 choix de modèles par gamme)
 } Jet;
 
 void ajouter_jet(FILE *listeJet);
